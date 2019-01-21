@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CitiesApp.Models;
+using CitiesApp.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using CitiesApp.Models;
 
 namespace CitiesApp.Controllers
 {
@@ -147,6 +147,55 @@ namespace CitiesApp.Controllers
             _context.City.Remove(city);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> More(int id)
+        {
+            var city = await _context.City.FirstOrDefaultAsync(c => c.Id == id);
+            var photos = _context.Photos.Where(p => p.CityId == id);
+            if (city == null)
+            {
+                return RedirectToAction("Index", "Cities");
+            }
+            return View(new CityViewModel
+            {
+                Id = city.Id,
+                Name = city.Name,
+                Photos = photos != null ? await photos.ToListAsync() : null
+            });
+        }
+
+        public ActionResult AddPhoto(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Cities");
+            }
+            return View(new PhotoViewModel { CityId = id.Value });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddPhoto(PhotoViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var photo = new Photo { CityId = model.CityId };
+            if (model.Image != null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
+                }
+                // установка массива байтов
+                photo.Image = imageData;
+            }
+            _context.Photos.Add(photo);
+            _context.SaveChanges();
+            return RedirectToAction("More", new { id = model.CityId });
         }
 
         private bool CityExists(int id)

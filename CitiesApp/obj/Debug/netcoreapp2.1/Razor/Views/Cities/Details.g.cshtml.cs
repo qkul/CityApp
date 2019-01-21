@@ -144,7 +144,7 @@ using CitiesApp.Models;
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(883, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1190768c8c7c428f9f28ae837fb1e7be", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1e108f520fe74789afa59da878f83f05", async() => {
                 BeginContext(929, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -179,7 +179,7 @@ using CitiesApp.Models;
             WriteLiteral(" |\r\n    ");
             EndContext();
             BeginContext(945, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "18fffee8d2a645f0b1dcbfcf1854e8fd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ebc9cf4249b7407bb7bb5892a1d4a8af", async() => {
                 BeginContext(967, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

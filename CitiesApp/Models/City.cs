@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CitiesApp.Models
 {
@@ -16,5 +12,7 @@ namespace CitiesApp.Models
         public int YearOfCreation { get; set; }
         public string Description { get; set; }
         public double Rating { get; set; }
+
+        public IQueryable<Photo> Photos { get; set; }
     }
 }
