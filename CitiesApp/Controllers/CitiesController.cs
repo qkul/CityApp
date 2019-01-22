@@ -1,8 +1,10 @@
 ﻿using CitiesApp.Models;
 using CitiesApp.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,14 +21,35 @@ namespace CitiesApp.Controllers
         }
 
         // GET: Cities
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchCountry, string searchString, string sortOrder)
         {
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";//sorting cities by name
+            ViewBag.RatingSort = sortOrder == "rating" ? "rating_desc" : "rating";// sorting cities by rating
             var cities = _context.City.Select(x => x);
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString))//check or name contains (search by city name)
             {
                 cities = cities.Where(s => s.Name.Contains(searchString));
             }
-            return View(await _context.City.ToListAsync());
+            if (!string.IsNullOrEmpty(searchCountry))//search by country name
+            {
+                cities = cities.Where(s => s.Country.Contains(searchCountry));
+            }
+            switch (sortOrder)
+            {
+                case "city_desc":
+                    cities = cities.OrderByDescending(c => c.Name);
+                    break;
+                case "rating":
+                    cities = cities.OrderBy(c => c.Rating);
+                    break;
+                case "rating_desc":
+                    cities = cities.OrderByDescending(c => c.Rating);
+                    break;
+                default:
+                    cities = cities.OrderBy(c => c.Name);
+                    break;
+            }
+            return View(await cities.ToListAsync());
         }
 
         // GET: Cities/Details/5
@@ -171,7 +194,7 @@ namespace CitiesApp.Controllers
             {
                 return RedirectToAction("Index", "Cities");
             }
-            return View(new PhotoViewModel { CityId = id.Value });
+            return View(new Photo { CityId = id.Value });
         }
 
         [HttpPost]
@@ -198,6 +221,35 @@ namespace CitiesApp.Controllers
             return RedirectToAction("More", new { id = model.CityId });
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> AddPhoto(Photo photos, List<IFormFile> Image)
+        //{
+        //    var photo = new Photo
+        //    {           
+        //        CityId = photos.CityId
+        //    };
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(photos);
+        //    }
+        //        foreach (var item in Image)
+        //    {
+        //        if (item.Length > 0)
+        //        {
+        //            using (var stream = new MemoryStream())
+        //            {
+        //                await item.CopyToAsync(stream);
+        //                photo.Image = stream.ToArray();
+        //            }
+        //        }
+        //    }
+        //    _context.Photos.Add(photo);
+        //    _context.SaveChanges();// id
+        //    return RedirectToAction("More", new
+        //    {
+        //        id = photos.CityId
+        //    });
+        //}
         private bool CityExists(int id)
         {
             return _context.City.Any(e => e.Id == id);
