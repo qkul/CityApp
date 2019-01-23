@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "d2d44331f15734ceed08c1c10e5cc2aa4709bd05"
+    "signature": "1f5da74c73bcd40a876f54e3c32d49fdb295924e"
   },
   "compilationOptions": {
     "defines": [
@@ -27,8 +27,7 @@
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1",
-          "PagedList.Core": "1.17.4"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1"
         },
         "runtime": {
           "CitiesApp.dll": {}
@@ -376,17 +375,6 @@
         },
         "compile": {
           "lib/netstandard1.6/NuGet.Frameworks.dll": {}
-        }
-      },
-      "PagedList.Core/1.17.4": {
-        "runtime": {
-          "lib/netcoreapp1.0/PagedList.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "lib/netcoreapp1.0/PagedList.Core.dll": {}
         }
       },
       "System.Composition/1.0.31": {
@@ -3606,13 +3594,6 @@
       "sha512": "sha512-KuqDbPzjOWbUM6gPMbkvdhlQ10roQAoMM7mNZ8hcY/fH+9J4Zc+qT8dLWoNzGyr0OrxQVdZdbSjy/fxwoICgGg==",
       "path": "nuget.frameworks/4.7.0",
       "hashPath": "nuget.frameworks.4.7.0.nupkg.sha512"
-    },
-    "PagedList.Core/1.17.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-VvtRPtzytU+r9QVmbqZkWMf3oRPGMdGXHBD2eZDuY5Mfkkdl5cJOCEe/Wnmgrwu73UbRTQe4vu40K4rfg/FkUw==",
-      "path": "pagedlist.core/1.17.4",
-      "hashPath": "pagedlist.core.1.17.4.nupkg.sha512"
     },
     "System.Composition/1.0.31": {
       "type": "package",

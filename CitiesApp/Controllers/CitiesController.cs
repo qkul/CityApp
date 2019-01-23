@@ -189,11 +189,13 @@ namespace CitiesApp.Controllers
             {
                 Id = city.Id,
                 Name = city.Name,
+                Description = city.Description,
                 Photos = photos
             });
         }
 
-        public async Task<IActionResult> GetPhoto(int id)
+        // GET: /Cities/GetPhoto
+        public async Task<IActionResult> GetPhoto(int? id)
         {
             var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
 
@@ -205,6 +207,7 @@ namespace CitiesApp.Controllers
             return File(photo.Image, photo.ImageType);
         }
 
+        // GET: /Cities/AddPhoto
         public IActionResult AddPhoto(int? id)
         {
             if (id == null)
@@ -214,6 +217,7 @@ namespace CitiesApp.Controllers
             return View(new PhotoViewModel { CityId = id.Value });
         }
 
+        // POST: /Cities/AddPhoto
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddPhoto(PhotoViewModel model)
@@ -238,35 +242,34 @@ namespace CitiesApp.Controllers
             return RedirectToAction("More", new { id = model.CityId });
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddPhoto(Photo photos, List<IFormFile> Image)
-        //{
-        //    var photo = new Photo
-        //    {           
-        //        CityId = photos.CityId
-        //    };
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(photos);
-        //    }
-        //        foreach (var item in Image)
-        //    {
-        //        if (item.Length > 0)
-        //        {
-        //            using (var stream = new MemoryStream())
-        //            {
-        //                await item.CopyToAsync(stream);
-        //                photo.Image = stream.ToArray();
-        //            }
-        //        }
-        //    }
-        //    _context.Photos.Add(photo);
-        //    _context.SaveChanges();// id
-        //    return RedirectToAction("More", new
-        //    {
-        //        id = photos.CityId
-        //    });
-        //}
+        // GET: /Cities/DeletePhoto
+        public async Task<IActionResult> DeletePhoto(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+            if (photo == null)
+            {
+                return NotFound();
+            }
+
+            return View(photo);
+        }
+
+        // POST: Cities/DeletePhoto
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeletePhoto(int id)
+        {
+            var photo = await _context.Photos.FindAsync(id);
+            _context.Photos.Remove(photo);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
         private bool CityExists(int id)
         {
             return _context.City.Any(e => e.Id == id);
