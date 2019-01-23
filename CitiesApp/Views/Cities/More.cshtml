@@ -1,16 +1,13 @@
 ﻿@using CitiesApp.ViewModels
 @model CityViewModel
-
 @{
     ViewData["Title"] = "More";
 }
-
 <div>
     <h3>@Model.Id</h3>
     <h3>@Model.Name</h3>
 </div>
-
-@if (Model.Photos == null)
+@if (Model.Photos.Count == 0)
 {
     <div>
         <h3>Фотографий нет</h3>
@@ -20,12 +17,9 @@ else
 {
     @foreach (var p in Model.Photos)
     {
-        @if (p.Image != null)
-        {
-            <img style='width:300px; height:250px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(p.Image))" />
-        }
+        <img src="@Url.Action("GetPhoto", new { id = p.Id })" alt="@p.Id" />
     }
 }
-    <div>
-        <a href="@Url.Action("AddPhoto", new { id = Model.Id })">Добавить новую фотографию</a>
-    </div>
+<div>
+    <a href="@Url.Action("AddPhoto", new { id = Model.Id })">Добавить новую фотографию</a>
+</div>

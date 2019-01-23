@@ -21,14 +21,18 @@ namespace CitiesApp.Controllers
         }
 
         // GET: Cities
-        public async Task<IActionResult> Index(string searchCountry, string searchString, string sortOrder)
+        public async Task<IActionResult> Index(string searchCountry, string searchName, string sortOrder)
         {
-            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";//sorting cities by name
+            ViewBag.NameSort = string.IsNullOrEmpty(sortOrder) ? "city_desc" : "";//sorting cities by name
             ViewBag.RatingSort = sortOrder == "rating" ? "rating_desc" : "rating";// sorting cities by rating
+
+            ViewBag.StrSearchName = searchName;
+            ViewBag.StrSearchCountry = searchCountry;
+
             var cities = _context.City.Select(x => x);
-            if (!String.IsNullOrEmpty(searchString))//check or name contains (search by city name)
+            if (!string.IsNullOrEmpty(searchName))//check or name contains (search by city name)
             {
-                cities = cities.Where(s => s.Name.Contains(searchString));
+                cities = cities.Where(s => s.Name.Contains(searchName));
             }
             if (!string.IsNullOrEmpty(searchCountry))//search by country name
             {
@@ -175,26 +179,39 @@ namespace CitiesApp.Controllers
         public async Task<IActionResult> More(int id)
         {
             var city = await _context.City.FirstOrDefaultAsync(c => c.Id == id);
-            var photos = _context.Photos.Where(p => p.CityId == id);
             if (city == null)
             {
                 return RedirectToAction("Index", "Cities");
             }
+
+            var photos = await _context.Photos.Where(p => p.CityId == id).ToListAsync();
             return View(new CityViewModel
             {
                 Id = city.Id,
                 Name = city.Name,
-                Photos = photos != null ? await photos.ToListAsync() : null
+                Photos = photos
             });
         }
 
-        public ActionResult AddPhoto(int? id)
+        public async Task<IActionResult> GetPhoto(int id)
+        {
+            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (photo == null)
+            {
+                return NotFound();
+            }
+
+            return File(photo.Image, photo.ImageType);
+        }
+
+        public IActionResult AddPhoto(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction("Index", "Cities");
             }
-            return View(new Photo { CityId = id.Value });
+            return View(new PhotoViewModel { CityId = id.Value });
         }
 
         [HttpPost]
@@ -204,7 +221,7 @@ namespace CitiesApp.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var photo = new Photo { CityId = model.CityId };
+            var photo = new Photo { CityId = model.CityId, ImageType = model.Image.ContentType };
             if (model.Image != null)
             {
                 byte[] imageData = null;

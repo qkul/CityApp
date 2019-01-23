@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace CitiesApp.Models
@@ -8,11 +9,10 @@ namespace CitiesApp.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
-        [Display(Name = "Year of creation")]
         public int YearOfCreation { get; set; }
         public string Description { get; set; }
         public double Rating { get; set; }
 
-        public IQueryable<Photo> Photos { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }
