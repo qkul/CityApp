@@ -33,7 +33,6 @@ C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1
 C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\AddPhoto.g.cshtml.cs
 C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\Create.g.cshtml.cs
 C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\Delete.g.cshtml.cs
-C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\Details.g.cshtml.cs
 C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\Edit.g.cshtml.cs
 C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\Index.g.cshtml.cs
 C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\More.g.cshtml.cs

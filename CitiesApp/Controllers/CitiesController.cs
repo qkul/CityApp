@@ -1,10 +1,7 @@
 ﻿using CitiesApp.Models;
 using CitiesApp.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,24 +51,6 @@ namespace CitiesApp.Controllers
                     break;
             }
             return View(await cities.ToListAsync());
-        }
-
-        // GET: Cities/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var city = await _context.City
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (city == null)
-            {
-                return NotFound();
-            }
-
-            return View(city);
         }
 
         // GET: Cities/Create
