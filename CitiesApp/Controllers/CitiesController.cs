@@ -25,8 +25,8 @@ namespace CitiesApp.Controllers
             int? page)
         {
             ViewData["CurrentSort"] = sortOrder;
-            ViewData["NameSort"] = string.IsNullOrEmpty(sortOrder) ? "city_desc" : "";//sorting cities by name
-            ViewData["RatingSort"] = sortOrder == "rating" ? "rating_desc" : "rating";// sorting cities by rating
+            ViewData["NameSort"] = string.IsNullOrEmpty(sortOrder) ? Defines.CitiesConroll.CITY_DESC  : string.Empty;//sorting cities by name
+            ViewData["RatingSort"] = sortOrder == Defines.CitiesConroll.RATING ? Defines.CitiesConroll.RATING_DESK : Defines.CitiesConroll.RATING;// sorting cities by rating
             ViewData["StrSearchName"] = searchName;
 
             if (searchName != null)
@@ -47,13 +47,13 @@ namespace CitiesApp.Controllers
 
             switch (sortOrder)
             {
-                case "city_desc":
+                case Defines.CitiesConroll.CITY_DESC:
                     cities = cities.OrderByDescending(c => c.Name);
                     break;
-                case "rating":
+                case Defines.CitiesConroll.RATING:
                     cities = cities.OrderBy(c => c.Rating);
                     break;
-                case "rating_desc":
+                case Defines.CitiesConroll.RATING_DESK:
                     cities = cities.OrderByDescending(c => c.Rating);
                     break;
                 default:
