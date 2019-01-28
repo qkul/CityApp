@@ -18,23 +18,33 @@ namespace CitiesApp.Controllers
         }
 
         // GET: Cities
-        public async Task<IActionResult> Index(string searchCountry, string searchName, string sortOrder)
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string searchName, string searchCountry, 
+            string currentFilter,
+            int? page)
         {
-            ViewBag.NameSort = string.IsNullOrEmpty(sortOrder) ? "city_desc" : "";//sorting cities by name
-            ViewBag.RatingSort = sortOrder == "rating" ? "rating_desc" : "rating";// sorting cities by rating
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSort"] = string.IsNullOrEmpty(sortOrder) ? "city_desc" : "";//sorting cities by name
+            ViewData["RatingSort"] = sortOrder == "rating" ? "rating_desc" : "rating";// sorting cities by rating
+            ViewData["StrSearchName"] = searchName;
 
-            ViewBag.StrSearchName = searchName;
-            ViewBag.StrSearchCountry = searchCountry;
+            if (searchName != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchName = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchName;
 
             var cities = _context.City.Select(x => x);
             if (!string.IsNullOrEmpty(searchName))//check or name contains (search by city name)
             {
                 cities = cities.Where(s => s.Name.Contains(searchName));
             }
-            if (!string.IsNullOrEmpty(searchCountry))//search by country name
-            {
-                cities = cities.Where(s => s.Country.Contains(searchCountry));
-            }
+
             switch (sortOrder)
             {
                 case "city_desc":
@@ -50,7 +60,9 @@ namespace CitiesApp.Controllers
                     cities = cities.OrderBy(c => c.Name);
                     break;
             }
-            return View(await cities.ToListAsync());
+            int pageSize = 7;
+            return View(await PaginatedList<City>.CreateAsync(cities.AsNoTracking(), page ?? 1, pageSize));
+            // return View(await cities.ToListAsync());
         }
 
         // GET: Cities/Create

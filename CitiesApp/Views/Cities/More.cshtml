@@ -5,8 +5,16 @@
     ViewData["Title"] = "More";
 }
 <div>
-    <h1 class="text-center">@Model.Name</h1>  
-    <h4><b>Description: </b><em>@Model.Description</em></h4>
+    <h1 class="text-center">@Model.Name</h1>
+    <h4><b>Description: </b></h4>
+    @if (Model.Description == null)
+    {
+        <h5><em>---</em></h5>
+    }
+    else
+    {
+        <h5><em>@Model.Description</em></h5>
+    }
 </div>
 
 @if (Model.Photos.Count == 0)
