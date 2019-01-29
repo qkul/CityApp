@@ -49,7 +49,7 @@ namespace CitiesApp
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Shared/Error");
                 app.UseHsts();
             }
 
@@ -61,7 +61,7 @@ namespace CitiesApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Cities}/{action=Index}/{id?}");
             });
         }
     }
