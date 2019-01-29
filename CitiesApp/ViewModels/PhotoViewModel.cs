@@ -7,6 +7,7 @@ namespace CitiesApp.ViewModels
     {
         [ScaffoldColumn(false)]// completely hide the property from the helpers
         public int CityId { get; set; }
+        public string PhotoInfo { get; set; }
         public IFormFile Image { get; set; }
     }
 }

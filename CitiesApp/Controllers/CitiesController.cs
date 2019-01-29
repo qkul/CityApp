@@ -216,7 +216,7 @@ namespace CitiesApp.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var photo = new Photo { CityId = model.CityId, ImageType = model.Image.ContentType };
+            var photo = new Photo { CityId = model.CityId, ImageType = model.Image.ContentType, PhotoInfo = model.PhotoInfo };
             if (model.Image != null)
             {
                 byte[] imageData = null;
