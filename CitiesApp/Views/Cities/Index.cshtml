@@ -7,32 +7,32 @@
 <div class="container text-white">
     <h2>City Application</h2>
     <p>
-        <a asp-action="Create" class="btn btn-primary" role="button">Create New</a>
+        <a asp-action="Create" class="btn btn-elegant btn-sm"> <i class="fas fa-city"> Create New</i> </a>
     </p>
-    <a asp-action="Index" class="btn btn-primary btn-xs dropdown-toggle" role="button">Back to Full List</a>
+    <a asp-action="Index" class="btn btn-elegant btn-sm"> <i class="far fa-list-alt"> Back to Full List</i> </a>
     @using (Html.BeginForm("Index", "Cities", FormMethod.Get))
     {
         <p>
             City name: <input type="search" name="searchName" value="@ViewData["StrSearchName"]" />
-            <button type="submit" class="btn btn-default btn-sm dropdown-toggle">
-                <span class="glyphicon glyphicon-search"></span> Filter
+            <button type="submit" class="btn btn-elegant btn-sm">
+                <i class="fas fa-search"> Filter</i>
             </button>
         </p>
     }
     <table class="table table-hover">
         <thead >
             <tr>
-                <th class="textHeader">
+                <th>
                     @*@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.NameSort })*@
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">City</a>
                 </th>
-                <th class="textHeader">
+                <th>
                     Country
                 </th>
-                <th class="textHeader">
+                <th>
                     Year of creation
                 </th>
-                <th class="textHeader">
+                <th>
                     @*@Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSort })*@
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Rating</a>
                 </th>
@@ -43,16 +43,16 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="textM">
+                    <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
-                    <td class="textM">
+                    <td>
                         @Html.DisplayFor(modelItem => item.Country)
                     </td>
-                    <td class="textM">
+                    <td>
                         @Html.DisplayFor(modelItem => item.YearOfCreation)
                     </td>
-                    <td class="textM">
+                    <td>
                         @Html.DisplayFor(modelItem => item.Rating)
                     </td>
                     <td>
@@ -72,14 +72,14 @@
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-page="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default @prevDisabled">
-        Previous
+       class="btn btn-elegant btn-sm @prevDisabled">
+        <i class="fas fa-angle-left"></i> PREVIOUS
     </a>
     <a asp-action="Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-page="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default @nextDisabled">
-        Next
+       class="btn btn-elegant btn-sm @nextDisabled">
+        NEXT <i class="fas fa-angle-right"></i>
     </a>
 </div>
