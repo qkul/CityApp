@@ -215,7 +215,10 @@ namespace CitiesApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-
+            if (model.Image == null)
+            {
+                return View();
+            }
             var photo = new Photo { CityId = model.CityId, ImageType = model.Image.ContentType, PhotoInfo = model.PhotoInfo };
             if (model.Image != null)
             {
@@ -240,7 +243,6 @@ namespace CitiesApp.Controllers
             {
                 return NotFound();
             }
-
             var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
             if (photo == null)
             {
@@ -258,7 +260,7 @@ namespace CitiesApp.Controllers
             var photo = await _context.Photos.FindAsync(id);
             _context.Photos.Remove(photo);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("More","Cities", new { id = photo.CityId});
         }
 
         private bool CityExists(int id)

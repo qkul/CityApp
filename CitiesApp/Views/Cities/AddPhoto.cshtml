@@ -20,7 +20,7 @@
                         @Html.TextBoxFor(m => m.Image, new { type = "file" })
                     </div>
                     <div class="form-group">
-                        <label asp-for="PhotoInfo" class="control-label"></label>
+                        <label asp-for="PhotoInfo" class="control-label">Place name and description</label>
                         <input asp-for="PhotoInfo" class="form-control" />
                         <span asp-validation-for="PhotoInfo" class="text-danger"></span>
                     </div>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div>
-            <a asp-action="Index" class="btn btn-elegant">Back to List</a>
+           <a asp-action="Index" class="btn btn-elegant"> <i class="far fa-list-alt"> Back to list</i> </a>
         </div>
     </div>
 </div>

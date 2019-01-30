@@ -5,7 +5,7 @@
 }
 
 <div class="container text-white">
-    <h2>City Application</h2>
+    <h2>Travel Helper</h2>
     <p>
         <a asp-action="Create" class="btn btn-elegant btn-sm"> <i class="fas fa-city"> Create New</i> </a>
     </p>
@@ -21,10 +21,10 @@
     }
     <table class="table table-hover">
         <thead >
-            <tr>
+            <tr class="text-dark">
                 <th>
                     @*@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.NameSort })*@
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">City</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">City <i class="fas fa-sort"></i></a>
                 </th>
                 <th>
                     Country
@@ -34,7 +34,7 @@
                 </th>
                 <th>
                     @*@Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSort })*@
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Rating</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Rating <i class="fas fa-sort"></i></a>
                 </th>
                 <th></th>
             </tr>
@@ -56,9 +56,9 @@
                         @Html.DisplayFor(modelItem => item.Rating)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-rounded">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id"  class="btn btn-info btn-rounded">Delete</a>
-                        <a asp-action="More" asp-route-id="@item.Id" class="btn btn-info btn-rounded">More</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-rounded btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"  class="btn btn-info btn-rounded btn-sm">Delete</a>
+                        <a asp-action="More" asp-route-id="@item.Id" class="btn btn-info btn-rounded btn-sm">More</a>
                     </td>
                 </tr>
             }
