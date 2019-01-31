@@ -19,11 +19,12 @@
                         @Html.LabelFor(m => m.Image)
                         @Html.TextBoxFor(m => m.Image, new { type = "file" })
                     </div>
-                    <div class="form-group">
-                        <label asp-for="PhotoInfo" class="control-label">Place name and description</label>
-                        <input asp-for="PhotoInfo" class="form-control" />
+                    <div class="form-group shadow-textarea">
+                        <label for="exampleFormControlTextarea6">Place name and description</label>
+                        <textarea asp-for="PhotoInfo" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write description here..."></textarea>
                         <span asp-validation-for="PhotoInfo" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-elegant" />
                     </div>

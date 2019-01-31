@@ -6,25 +6,29 @@
 
 <div class="container text-white">
     <h2>Travel Helper</h2>
-    <p>
-        <a asp-action="Create" class="btn btn-elegant btn-sm"> <i class="fas fa-city"> Create New</i> </a>
-    </p>
-    <a asp-action="Index" class="btn btn-elegant btn-sm"> <i class="far fa-list-alt"> Back to Full List</i> </a>
+    <a asp-action="Create" class="btn btn-elegant btn-sm"> <i class="fas fa-city"> Create New</i> </a>
     @using (Html.BeginForm("Index", "Cities", FormMethod.Get))
     {
-        <p>
-            City name: <input type="search" name="searchName" value="@ViewData["StrSearchName"]" />
-            <button type="submit" class="btn btn-elegant btn-sm">
-                <i class="fas fa-search"> Filter</i>
-            </button>
-        </p>
+        <div class="row">
+            <div class="col">
+                <div class="md-form mt-0 text-white">
+                    <input type="search" name="searchName" value="@ViewData["StrSearchName"]" class="form-control text-white" placeholder="City name" />
+                </div>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-elegant btn-sm">
+                    <i class="fas fa-search"> Filter</i>
+                </button>
+            </div>
+            <div class="col"></div>
+        </div>
     }
-    <table class="table table-hover">
-        <thead >
-            <tr class="text-dark">
+    <table class="table table-hover text-white">
+        <thead>
+            <tr>
                 <th>
                     @*@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.NameSort })*@
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">City <i class="fas fa-sort"></i></a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"><i class="fas fa-sort text-white"> City</i></a>
                 </th>
                 <th>
                     Country
@@ -34,7 +38,7 @@
                 </th>
                 <th>
                     @*@Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSort })*@
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Rating <i class="fas fa-sort"></i></a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"><i class="fas fa-sort text-white"> Rating</i></a>
                 </th>
                 <th></th>
             </tr>
@@ -57,7 +61,7 @@
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-rounded btn-sm">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id"  class="btn btn-info btn-rounded btn-sm">Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-info btn-rounded btn-sm">Delete</a>
                         <a asp-action="More" asp-route-id="@item.Id" class="btn btn-info btn-rounded btn-sm">More</a>
                     </td>
                 </tr>
@@ -82,4 +86,5 @@
        class="btn btn-elegant btn-sm @nextDisabled">
         NEXT <i class="fas fa-angle-right"></i>
     </a>
+    <a asp-action="Index" class="btn btn-elegant btn-sm"> <i class="far fa-list-alt"> Back to Full List</i> </a>
 </div>
