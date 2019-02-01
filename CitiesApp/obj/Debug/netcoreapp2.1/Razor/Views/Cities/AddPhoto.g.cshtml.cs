@@ -120,7 +120,7 @@ using CitiesApp.ViewModels;
             WriteLiteral("\r\n                    </div>\r\n                    <div class=\"form-group shadow-textarea\">\r\n                        <label for=\"exampleFormControlTextarea6\">Place name and description</label>\r\n                        ");
             EndContext();
             BeginContext(932, 154, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4ba0f2276f0453b8a60067ced2d029f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38f0bcb0d9be40879735438faed99638", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper>();
@@ -147,7 +147,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1112, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "06161c6ea6034ba585d2814f34a79946", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8198199bd7294bf1bc0262474696dd0c", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
@@ -182,7 +182,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
             WriteLiteral("            </div>\r\n        </div>\r\n        <div>\r\n           ");
             EndContext();
             BeginContext(1451, 96, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79a2d753c31948f08442d001a8962e56", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "372aca99a7af4e56be3d42d4f00e807d", async() => {
                 BeginContext(1497, 46, true);
                 WriteLiteral(" <i class=\"far fa-list-alt\"> Back to list</i> ");
                 EndContext();

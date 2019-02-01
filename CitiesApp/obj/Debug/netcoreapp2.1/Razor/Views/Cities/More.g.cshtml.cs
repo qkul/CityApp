@@ -180,12 +180,12 @@ WriteAttributeValue("", 1139, p.Id, 1139, 5, false);
             WriteLiteral(" class=\"img-fluid z-depth-2\">\r\n                            </a>\r\n                            <figcaption>\r\n                                ");
             EndContext();
             BeginContext(1284, 270, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "708b83125e234f1d852d76a7585ffc0d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e958698129b436e8bf999c700b18f20", async() => {
                 BeginContext(1336, 38, true);
                 WriteLiteral("\r\n                                    ");
                 EndContext();
                 BeginContext(1374, 39, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce93318890b2410fbc5bbfcfc2a720b0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b7b8c953bcc245d8b356934c37cc4be3", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -280,7 +280,7 @@ WriteAttributeValue("", 1988, Url.Action("AddPhoto", new { id = Model.Id }), 198
             WriteLiteral(" class=\"btn btn-elegant\"><i class=\"far fa-image\"> Add new photo</i></a>\r\n        ");
             EndContext();
             BeginContext(2116, 96, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2eeae8143e0f46b899be4d99491c92dc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8dafbca2b0d440de946dcf502a6fc021", async() => {
                 BeginContext(2162, 46, true);
                 WriteLiteral(" <i class=\"far fa-list-alt\"> Back to list</i> ");
                 EndContext();

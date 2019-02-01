@@ -149,12 +149,12 @@ using CitiesApp.Models;
             WriteLiteral("\r\n            </dd>\r\n        </dl>\r\n\r\n        ");
             EndContext();
             BeginContext(1055, 279, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2094402dbf64e5c83b8ae9996134c4f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa3136b4e1934f14b3c09fcf73d0931d", async() => {
                 BeginContext(1081, 14, true);
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(1095, 36, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a3a3c0681ec34e9f8d8cc43c6e0580af", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "476b7ba4baaf448688aaa74a8405f88b", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -179,7 +179,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n            <input type=\"submit\" value=\"Delete\" class=\"btn btn-elegant\" />\r\n            ");
                 EndContext();
                 BeginContext(1221, 96, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c646debc88a749ee81ece1b66f2cba0f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df1f8ec6156b496ba3baa2799605eaad", async() => {
                     BeginContext(1267, 46, true);
                     WriteLiteral(" <i class=\"far fa-list-alt\"> Back to list</i> ");
                     EndContext();

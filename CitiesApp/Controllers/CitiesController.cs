@@ -263,6 +263,13 @@ namespace CitiesApp.Controllers
             return RedirectToAction("More","Cities", new { id = photo.CityId});
         }
 
+        // GET: Cities/AllCities
+        public ActionResult AllCities()
+        {
+            var city = _context.City.OrderBy(c => c.Name);
+            return PartialView(city);
+        }
+
         private bool CityExists(int id)
         {
             return _context.City.Any(e => e.Id == id);

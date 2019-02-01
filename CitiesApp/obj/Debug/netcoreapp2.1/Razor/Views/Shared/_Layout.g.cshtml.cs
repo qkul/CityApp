@@ -55,7 +55,7 @@ using CitiesApp.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
             EndContext();
             BeginContext(35, 662, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3997131ceea84285834b7718d4262c3c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6eb85c82ee5d40689449b10870cdf0f2", async() => {
                 BeginContext(41, 363, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"">
@@ -113,7 +113,7 @@ WriteAttributeValue("", 636, Url.Content("~/css/style.css"), 636, 31, false);
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(699, 3024, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c5d3ad60428410b83b02eb40582a793", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7eddd676831c4d8691305f7a95b5111c", async() => {
                 BeginContext(722, 165, true);
                 WriteLiteral("\r\n    <!--Main Navigation-->\r\n    <header>\r\n        <nav class=\"navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar\">\r\n            <a class=\"navbar-brand\"");
                 EndContext();

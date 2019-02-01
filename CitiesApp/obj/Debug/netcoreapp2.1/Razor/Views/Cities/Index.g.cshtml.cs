@@ -71,7 +71,7 @@ using CitiesApp.Controllers;
             WriteLiteral("\r\n<div class=\"container text-white\">\r\n    <h2>Travel Helper</h2>\r\n    ");
             EndContext();
             BeginContext(189, 98, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42264cd6593947129d41bafbbc7cd742", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e84700dc0bdb4b34a2cb3424b3fa8137", async() => {
                 BeginContext(243, 40, true);
                 WriteLiteral(" <i class=\"fas fa-city\"> Create New</i> ");
                 EndContext();
@@ -134,7 +134,7 @@ WriteAttributeValue("", 539, ViewData["StrSearchName"], 539, 26, false);
             WriteLiteral("                    ");
             EndContext();
             BeginContext(1162, 166, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "764ed7a68d50437a9e90cce369c021fe", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d9d409f80264c6eaff368869f34ba2e", async() => {
                 BeginContext(1281, 43, true);
                 WriteLiteral("<i class=\"fas fa-sort text-white\"> City</i>");
                 EndContext();
@@ -181,7 +181,7 @@ WriteAttributeValue("", 539, ViewData["StrSearchName"], 539, 26, false);
             WriteLiteral("                    ");
             EndContext();
             BeginContext(1653, 170, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df89b1876dbc474da01bc13813247110", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b1321b56ec34fca88af996b1dd4dc6e", async() => {
                 BeginContext(1774, 45, true);
                 WriteLiteral("<i class=\"fas fa-sort text-white\"> Rating</i>");
                 EndContext();
@@ -274,7 +274,7 @@ WriteAttributeValue("", 539, ViewData["StrSearchName"], 539, 26, false);
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
             EndContext();
             BeginContext(2549, 93, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e9271610dc54919b2c2c0f2d5aae78d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2582babe5f84d388d592a3d6a150d7a", async() => {
                 BeginContext(2634, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -310,7 +310,7 @@ WriteAttributeValue("", 539, ViewData["StrSearchName"], 539, 26, false);
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(2668, 97, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ac7ffd3d62714c2cafc8c4281a84762e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c72b5fa6ec2d45ae85b0541e56071113", async() => {
                 BeginContext(2755, 6, true);
                 WriteLiteral("Delete");
                 EndContext();
@@ -346,7 +346,7 @@ WriteAttributeValue("", 539, ViewData["StrSearchName"], 539, 26, false);
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(2791, 93, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6d59bde7751463d8594116ef23756b2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f3fc33ae99c46afb7e1ea3faf854018", async() => {
                 BeginContext(2876, 4, true);
                 WriteLiteral("More");
                 EndContext();
@@ -401,7 +401,7 @@ WriteAttributeValue("", 539, ViewData["StrSearchName"], 539, 26, false);
             WriteLiteral("    ");
             EndContext();
             BeginContext(3138, 301, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3afe2b9f6a664e19885b206998c6ede7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ded283877384b98bbd350e3d8c26356", async() => {
                 BeginContext(3377, 58, true);
                 WriteLiteral("\r\n        <i class=\"fas fa-angle-left\"></i> PREVIOUS\r\n    ");
                 EndContext();
@@ -464,7 +464,7 @@ AddHtmlAttributeValue(" ", 3361, prevDisabled, 3362, 13, false);
             WriteLiteral("\r\n    ");
             EndContext();
             BeginContext(3445, 298, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "94ac3f156ee64d0695b33397a5acc610", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df2fb554ee424e009cfbe1a757b1cc54", async() => {
                 BeginContext(3684, 55, true);
                 WriteLiteral("\r\n        NEXT <i class=\"fas fa-angle-right\"></i>\r\n    ");
                 EndContext();
@@ -527,7 +527,7 @@ AddHtmlAttributeValue(" ", 3668, nextDisabled, 3669, 13, false);
             WriteLiteral("\r\n    ");
             EndContext();
             BeginContext(3749, 108, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d8039acb21864edb9c30497868ebe777", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6c8cd405777417f8c4d468e0b20e292", async() => {
                 BeginContext(3802, 51, true);
                 WriteLiteral(" <i class=\"far fa-list-alt\"> Back to Full List</i> ");
                 EndContext();

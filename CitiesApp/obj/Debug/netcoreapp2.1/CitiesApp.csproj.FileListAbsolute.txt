@@ -98,3 +98,4 @@ D:\28.01.2019\CityApp\CitiesApp\obj\Debug\netcoreapp2.1\CitiesApp.pdb
 D:\28.01.2019\CityApp\CitiesApp\obj\Debug\netcoreapp2.1\CitiesApp.csproj.CopyComplete
 D:\28.01.2019\CityApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
 D:\28.01.2019\CityApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\Andrei_Kulbeda\source\repos\CitiesApp\CitiesApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\AllCities.g.cshtml.cs
