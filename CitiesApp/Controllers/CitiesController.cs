@@ -270,6 +270,13 @@ namespace CitiesApp.Controllers
             return PartialView(city);
         }
 
+        // GET: Cities/AllCitiesJson
+        public ActionResult AllCitiesJson()
+        {
+            var city = _context.City.OrderBy(c => c.Name);
+            return Json(city);
+        }
+
         private bool CityExists(int id)
         {
             return _context.City.Any(e => e.Id == id);

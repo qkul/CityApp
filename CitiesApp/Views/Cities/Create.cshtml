@@ -45,7 +45,9 @@
             </form>
         </div>
     </div>
-    <input type="button" class="btn btn-elegant" value="List" id="list_button" />
+    
+    @* ajax + jquery *@
+    <input type="button" class="btn btn-elegant" value="Get list using $ajax" id="list_button" />
     <div class="text-white" id="updating_div"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -61,4 +63,37 @@
             });
         });
     </script>
+
+
+    @* fetch *@
+    <div>
+        <button class="btn btn-elegant" id="getData">Get list using feth</button>
+        <h5 id="result"></h5>
+    </div>
+    <script>
+        document.getElementById('getData').addEventListener('click', getData);
+
+        function getData() {
+            fetch('/Cities/AllCitiesJson')
+                .then((res) => { return res.json() })
+                .then((data) => {
+                    let result = `Cities that are already on the list: `;
+                    data.forEach((cities) => {
+                        const { name } = cities
+                        result +=
+                            //`<div>
+                            // <h5> City ID: ${id} </h5>
+                            //     <ul class="w3-ul">
+                            //         <li> Name : ${name}</li>
+                            //     </ul>
+                            //  </div>`;
+                            `<em> ${name} /</em>`;
+                        document.getElementById('result').innerHTML = result;
+                    });
+                }).catch(function (error) {
+                    console.log('There has been a problem with your fetch operation: ' + error.message);
+                });
+        }    
+    </script>
+
 </div>
