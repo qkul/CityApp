@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CitiesApp.Models;
 
 namespace CitiesApp.Infrastructure
 {
-    public interface ICityRepository
+    public interface ICityRepository : IRepositoryBase<City>
     {
-        IQueryable<City> Cities { get; }
-        City GetCity(int id);
-        City AddCity(City city);
-        City EditCity(int cityId, City newCity);
-        City DeleteCity(int id);
+        Task<IEnumerable<City>> GetAllCitiesAsync();
+        Task<City> GetCitiesByIdAsync(int? id);
+        Task CreateCityAsync(City city);
+        Task DeleteCityAsync(City city);
+        IQueryable<City> CitiesSAll();
+        IQueryable<City> CitiesOrderBy();
+        Task UpdateOwnerAsync(City city);
+        City GetCitiesDefault(int? id);
+        bool CityExits(int id);
     }
 }

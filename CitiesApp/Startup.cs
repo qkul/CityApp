@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CitiesApp.Models;
+using CitiesApp.Infrastructure;
+using CitiesApp.Repositories;
 
 namespace CitiesApp
 {
@@ -21,7 +23,7 @@ namespace CitiesApp
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }    
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,7 +35,9 @@ namespace CitiesApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            //services.AddTransient<ICityRepository, CityRepository>();//*** controller <-> services <-> repository
+            //services.AddTransient<IPhotoRepository, PhotoRepository>();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<CitiesAppContext>(options =>
