@@ -34,7 +34,7 @@ namespace CitiesApp.Repositories
 
         public async Task<IEnumerable<T>> FindByConditionAync(Expression<Func<T, bool>> expression)
         {
-            return await _context.Set<T>().Where(expression).ToListAsync();
+            return await _context.Set<T>().Where(expression).ToListAsync();// fix to list
         }
 
         public async Task SaveAsync()

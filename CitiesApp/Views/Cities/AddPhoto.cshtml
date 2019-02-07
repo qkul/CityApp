@@ -10,7 +10,7 @@
         <hr />
         <div class="row">
             <div class="col-md-4">
-                @using (Html.BeginForm("AddPhoto", "Cities", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("AddPhoto", "Photos", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 

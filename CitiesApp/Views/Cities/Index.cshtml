@@ -1,5 +1,6 @@
-﻿@using CitiesApp.Controllers;
-@model PaginatedList<CitiesApp.Models.City>
+﻿@using CitiesApp.ViewModels
+@model IndexViewModel
+
 @{
     ViewData["Title"] = "CityApp";
 }
@@ -7,28 +8,30 @@
 <div class="container text-white">
     <h2>Travel Helper</h2>
     <a asp-action="Create" class="btn btn-elegant btn-sm"> <i class="fas fa-city"> Create New</i> </a>
-    @using (Html.BeginForm("Index", "Cities", FormMethod.Get))
-    {
+    <form method="get">
         <div class="row">
             <div class="col">
                 <div class="md-form mt-0 text-white">
-                    <input type="search" name="searchName" value="@ViewData["StrSearchName"]" class="form-control text-white" placeholder="City name" />
+                    <label class="control-label text-white">City </label>
+                    @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control text-white" })
                 </div>
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-elegant btn-sm">
+                <button type="submit" class="btn btn-elegant btn-sm ">
                     <i class="fas fa-search"> Filter</i>
                 </button>
             </div>
             <div class="col"></div>
         </div>
-    }
+    </form>
+
     <table class="table table-hover text-white">
         <thead>
             <tr>
                 <th>
-                    @*@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.NameSort })*@
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"><i class="fas fa-sort text-white"> City</i></a>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                       asp-route-name="@(Model.FilterViewModel.SelectedName)"><i class="fas fa-sort text-white"> City</i></a>
                 </th>
                 <th>
                     Country
@@ -37,14 +40,16 @@
                     Year of creation
                 </th>
                 <th>
-                    @*@Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSort })*@
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"><i class="fas fa-sort text-white"> Rating</i></a>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@(Model.SortViewModel.RatingSort)"
+                       asp-route-name="@(Model.FilterViewModel.SelectedName)"><i class="fas fa-sort text-white"> Rating</i></a>
                 </th>
+
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Cities)
             {
                 <tr>
                     <td>
@@ -68,23 +73,25 @@
             }
         </tbody>
     </table>
-    @{
-        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+           asp-route-name="@(Model.FilterViewModel.SelectedName)"
+           asp-route-sortorder="@(Model.SortViewModel.Current)"
+           class="btn btn-elegant btn-sm">
+           <i class="fas fa-angle-left"></i> PREVIOUS
+        </a>
     }
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-page="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-elegant btn-sm @prevDisabled">
-        <i class="fas fa-angle-left"></i> PREVIOUS
-    </a>
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-page="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-elegant btn-sm @nextDisabled">
-        NEXT <i class="fas fa-angle-right"></i>
-    </a>
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+           asp-route-name="@(Model.FilterViewModel.SelectedName)"
+           asp-route-sortorder="@(Model.SortViewModel.Current)"
+           class="btn btn-elegant btn-sm">
+            NEXT <i class="fas fa-angle-right"></i>
+        </a>
+    }
     <a asp-action="Index" class="btn btn-elegant btn-sm"> <i class="far fa-list-alt"> Back to Full List</i> </a>
 </div>

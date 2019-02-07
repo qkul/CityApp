@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CitiesApp
 {
     public class PaginatedList<TEntity> : List<TEntity>
-    { 
+    {
         public int PageIndex { get; private set; }
         public int TotalPages { get; private set; }
 
@@ -17,7 +17,7 @@ namespace CitiesApp
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
 
             this.AddRange(items);
-        }   
+        }
 
         public bool HasPreviousPage
         {
@@ -41,6 +41,6 @@ namespace CitiesApp
             var items = await source.Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
             return new PaginatedList<TEntity>(items, count, pageIndex, pageSize);
-        }   
+        }
     }
 }

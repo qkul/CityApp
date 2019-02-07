@@ -33,8 +33,8 @@
                     @foreach (var p in Model.Photos)
                     {
                         <figure class="col-md-4">
-                            <a href="@Url.Action("GetPhoto", new { id = p.Id })" alt="@p.Id" data-size="1600x1067">
-                                <img src="@Url.Action("GetPhoto", new { id = p.Id })" alt="@p.Id" class="img-fluid z-depth-2">
+                            <a href="@Url.Action("GetPhoto", "Photos", new { id = p.Id })" alt="@p.Id" data-size="1600x1067">
+                                <img src="@Url.Action("GetPhoto", "Photos", new { id = p.Id })" alt="@p.Id" class="img-fluid z-depth-2">
                             </a>
                             <figcaption>
                                 <form asp-action="DeletePhoto" asp-route-id="@p.Id">
@@ -56,7 +56,7 @@
        
     }
     <div>
-        <a href="@Url.Action("AddPhoto", new { id = Model.Id })" class="btn btn-elegant"><i class="far fa-image"> Add new photo</i></a>
+        <a href="@Url.Action("AddPhoto", "Photos", new { id = Model.Id })" class="btn btn-elegant"><i class="far fa-image"> Add new photo</i></a>
         <a asp-action="Index" class="btn btn-elegant"> <i class="far fa-list-alt"> Back to list</i> </a>
     </div>
 </div>

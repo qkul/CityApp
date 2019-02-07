@@ -37,7 +37,7 @@ namespace CitiesApp
 
             //services.AddTransient<ICityRepository, CityRepository>();//*** controller <-> services <-> repository
             //services.AddTransient<IPhotoRepository, PhotoRepository>();
-            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<CitiesAppContext>(options =>

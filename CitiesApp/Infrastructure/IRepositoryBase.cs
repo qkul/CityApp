@@ -14,6 +14,5 @@ namespace CitiesApp.Infrastructure
         void Update(T entity);
         void Delete(T entity);
         Task SaveAsync();
-
     }
 }
