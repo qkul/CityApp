@@ -37,9 +37,9 @@
                                 <img src="@Url.Action("GetPhoto", "Photos", new { id = p.Id })" alt="@p.Id" class="img-fluid z-depth-2">
                             </a>
                             <figcaption>
-                                <form asp-action="DeletePhoto" asp-route-id="@p.Id">
+                                <form asp-action="DeletePhoto" asp-controller="Photos" asp-route-id="@p.Id">
                                     <input type="hidden" asp-for="@p.Id" />
-                                    <input type="submit" value="Delete" class="btn btn-elegant" />
+                                    <input type="submit" value="Delete" onclick="location.href='@Url.Action("More", "Cities", new { id = p.CityId})'" class="btn btn-elegant" />
                                 </form>
                                 <div>
                                    <h5>@p.PhotoInfo</h5> 

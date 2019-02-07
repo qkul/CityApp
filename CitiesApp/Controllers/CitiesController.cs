@@ -15,26 +15,19 @@ namespace CitiesApp.Controllers
         //fix 1 interface
         //fix 2 Controller(city/photo)
 
-        //private readonly ICityRepository _cityRepository;
-        //private readonly IPhotoRepository _photoRepositoty;
-        //public CitiesController(ICityRepository cityRepository, IPhotoRepository photoRepository)
-        //{
-        //    _cityRepository = cityRepository;//_cityRepository
-        //    _photoRepositoty = photoRepository;//_photoRepositoty
-        //}
-
-        private readonly CitiesAppContext _context;
-        public CitiesController(CitiesAppContext context)
+        private readonly ICityRepository _cityRepository;
+        private readonly IPhotoRepository _photoRepositoty;
+        public CitiesController(ICityRepository cityRepository, IPhotoRepository photoRepository)
         {
-            _context = context;
+            _cityRepository = cityRepository;//_cityRepository
+            _photoRepositoty = photoRepository;//_photoRepositoty
         }
 
         //GET: Cities
         public async Task<IActionResult> Index(string name, int page = 1,
             SortState sortOrder = SortState.NameAsc)
         {
-            var cities = _context.City.Select(x => x);
-            
+            var cities = _cityRepository.GetAllSelect(x => x);
             //Filter
             if (!string.IsNullOrEmpty(name))
             {
@@ -66,7 +59,7 @@ namespace CitiesApp.Controllers
             {
                 PageViewModel = new PageViewModel(count, page, pageSize),
                 SortViewModel = new SortViewModel(sortOrder),
-                FilterViewModel = new FilterViewModel(_context.City.ToList(), name),
+                FilterViewModel = new FilterViewModel(_cityRepository.GetAll(), name),
                 Cities = items
             };
             return View(viewModel);
@@ -87,9 +80,7 @@ namespace CitiesApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // await _cityRepository.CreateCityAsync(city);
-                _context.Add(city);
-                await _context.SaveChangesAsync();
+                await _cityRepository.AddAsyn(city);
                 return RedirectToAction(nameof(Index));
             }
             return View(city);
@@ -100,8 +91,7 @@ namespace CitiesApp.Controllers
         {
             if (id == null) return NotFound();
 
-            //var city = await _cityRepository.GetCitiesByIdAsync(id);
-            var city = await _context.City.FindAsync(id);
+            var city = await _cityRepository.GetAsync(id);
             if (city == null) return NotFound();
 
             return View(city);
@@ -119,15 +109,10 @@ namespace CitiesApp.Controllers
 
             try
             {
-                //await _cityRepository.UpdateOwnerAsync(city);
-                _context.Update(city);
-                await _context.SaveChangesAsync();
+                await _cityRepository.UpdateCity(city);
             }
             catch (DbUpdateConcurrencyException)
-            {
-                if (!CityExists(city.Id))
-                    return NotFound();
-                else
+            {         
                     throw;
             }
             return RedirectToAction(nameof(Index));
@@ -138,9 +123,7 @@ namespace CitiesApp.Controllers
         {
             if (id == null) return NotFound();
 
-            //var city = _cityRepository.GetCitiesDefault(id);
-            var city = await _context.City
-               .FirstOrDefaultAsync(m => m.Id == id);
+            var city = await _cityRepository.FirtsOrDefaoultAsync(m => m.Id == id);
             if (city == null) return NotFound();
 
             return View(city);
@@ -151,25 +134,19 @@ namespace CitiesApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            //var city = await _cityRepository.GetCitiesByIdAsync(id);
-            //await _cityRepository.DeleteCityAsync(city);
-            var city = await _context.City.FindAsync(id);
-            _context.City.Remove(city);
-            await _context.SaveChangesAsync();
+            var city = await _cityRepository.DeleteAsyn(new City { Id = id });
             return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> More(int id)
         {
-            // var city = _cityRepository.GetCitiesDefault(id);
-            var city = await _context.City.FirstOrDefaultAsync(c => c.Id == id);
+            var city = await _cityRepository.FirtsOrDefaoultAsync(c => c.Id == id);
             if (city == null)
             {
                 return RedirectToAction("Index", "Cities");
             }
 
-            // var photos = _photoRepositoty.GetPhotoWhere(id);
-            var photos = await _context.Photos.Where(p => p.CityId == id).ToListAsync();
+            var photos = await _photoRepositoty.FindByAsyn(p => p.CityId == id);
             return View(new CityViewModel
             {
                 Id = city.Id,
@@ -179,28 +156,18 @@ namespace CitiesApp.Controllers
             });
         }
 
-        
-
         // GET: Cities/AllCities
         public ActionResult AllCities()
         {
-            // var city = _cityRepository.CitiesOrderBy();
-            var city = _context.City.OrderBy(c => c.Name);
+            var city = _cityRepository.GetListOrderBy(c => c.Name);
             return PartialView(city);
         }
 
         // GET: Cities/AllCitiesJson
         public ActionResult AllCitiesJson()
         {
-            //var city = _cityRepository.CitiesOrderBy();
-            var city = _context.City.OrderBy(c => c.Name);
+            var city = _cityRepository.GetListOrderBy(c=>c.Name);
             return Json(city);
-        }
-
-        private bool CityExists(int id)
-        {
-            //  return _cityRepository.CityExits(id);
-            return _context.City.Any(e => e.Id == id);
         }
     }
 }

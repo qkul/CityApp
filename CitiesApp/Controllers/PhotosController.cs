@@ -1,4 +1,5 @@
-﻿using CitiesApp.Models;
+﻿using CitiesApp.Infrastructure;
+using CitiesApp.Models;
 using CitiesApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,22 +10,16 @@ namespace CitiesApp.Controllers
 {
     public class PhotosController : Controller
     {
-        //private readonly IPhotoRepository _photoRepositoty;
-        //public PhotosController(IPhotoRepository photoRepository)
-        //{
-        //    _photoRepositoty = photoRepository;//_photoRepositoty
-        //}
-
-        private readonly CitiesAppContext _context;
-        public PhotosController(CitiesAppContext context)
+        private readonly IPhotoRepository _photoRepositoty;
+        public PhotosController(IPhotoRepository photoRepository)
         {
-            _context = context;
+            _photoRepositoty = photoRepository;//_photoRepositoty
         }
+
         // GET: /Cities/GetPhoto
         public async Task <IActionResult> GetPhoto(int? id)
         {
-            //var photo = _photoRepositoty.GetPhotosDefault(id);
-            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+            var photo = await _photoRepositoty.FirtsOrDefaoultAsync(p => p.Id == id);
             if (photo == null) return NotFound();
 
             return File(photo.Image, photo.ImageType);
@@ -63,20 +58,15 @@ namespace CitiesApp.Controllers
                 // установка массива байтов
                 photo.Image = imageData;
             }
-            //_photoRepositoty.CreatePhotoAsync(photo);
-            //_photoRepositoty.CreatePhoto(photo);
-            _context.Photos.Add(photo);
-            _context.SaveChanges();
-            return RedirectToAction("More", new { id = model.CityId });
+            _photoRepositoty.Add(photo);
+            return RedirectToAction("More","Cities", new { id = model.CityId });
         }
 
         // GET: /Cities/DeletePhoto
         public async Task <IActionResult> DeletePhoto(int? id)
         {
             if (id == null) return NotFound();
-            // var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
-            // var photo = _photoRepositoty.GetPhotosDefault(id);
-            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+            var photo = await _photoRepositoty.FirtsOrDefaoultAsync(p => p.Id == id);
             if (photo == null) return NotFound();
 
             return View(photo);
@@ -89,9 +79,15 @@ namespace CitiesApp.Controllers
         {
             //var photo = await _photoRepositoty.GetPhotoFindIdAsync(id);
             //await _photoRepositoty.DeletePhotoAsync(photo);
-            var photo = await _context.Photos.FindAsync(id);
-            _context.Photos.Remove(photo);
+
+            /* 
+            var photo1 = _context.Photos.Remove( new Photo { Id = id} );
             await _context.SaveChangesAsync();
+            return RedirectToAction("More", "Cities");
+            */// The transation to the main page does not work
+
+            var photo = await _photoRepositoty.GetAsync(id);
+            await _photoRepositoty.DeleteAsyn(photo);
             return RedirectToAction("More", "Cities", new { id = photo.CityId });
         }
     }

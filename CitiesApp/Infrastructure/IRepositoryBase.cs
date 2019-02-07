@@ -8,11 +8,19 @@ namespace CitiesApp.Infrastructure
 {
     public interface IRepositoryBase<T> where T : class
     {
-        Task<IEnumerable<T>> FindAllAsync();
-        Task<IEnumerable<T>> FindByConditionAync(Expression<Func<T, bool>> expression);
-        void Create(T entity);
-        void Update(T entity);
+        T Add(T t);
+        Task<T> AddAsyn(T t);
         void Delete(T entity);
-        Task SaveAsync();
+        Task<int> DeleteAsyn(T entity);
+        Task<ICollection<T>> FindByAsyn(Expression<Func<T, bool>> predicate);
+        Task<T> FirtsOrDefaoultAsync(Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetListOrderBy(Expression<Func<T, string>> predicate);
+        List<T> GetAll();
+        Task<ICollection<T>> GetAllAsyn();
+        Task<T> GetAsync(int? id);
+        void Save();
+        void Update(T entity);
+        Task<int> SaveAsync();
+        IQueryable<T> GetAllSelect(Expression<Func<T, T>> predicate);
     }
 }
