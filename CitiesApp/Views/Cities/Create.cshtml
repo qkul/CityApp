@@ -4,50 +4,96 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<div class="container text-white">
 
-<h4>City</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="YearOfCreation" class="control-label"></label>
-                <input asp-for="YearOfCreation" class="form-control" />
-                <span asp-validation-for="YearOfCreation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h2>Create</h2>
+    <h4>City</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country" class="control-label"></label>
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="YearOfCreation" class="control-label"></label>
+                    <input asp-for="YearOfCreation" class="form-control" />
+                    <span asp-validation-for="YearOfCreation" class="text-danger"></span>
+                </div>
+                <div class="form-group shadow-textarea">
+                    <label for="exampleFormControlTextarea6">Description</label>
+                    <textarea asp-for="Description" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write description here..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Rating" class="control-label"></label>
+                    <input asp-for="Rating" class="form-control" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-elegant" />
+                    <a asp-action="Index" class="btn btn-elegant"> <i class="far fa-list-alt"> Back to list</i> </a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+    
+    @* ajax + jquery *@
+    <input type="button" class="btn btn-elegant" value="Get list using $ajax" id="list_button" />
+    <div class="text-white" id="updating_div"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#list_button").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Cities/AllCities",
+                    success: function (data) {
+                        $("#updating_div").html(data)
+                    }
+                });
+            });
+        });
+    </script>
 
-<div>
-    <a asp-action="Index" class="btn btn-primary btn-xs dropdown-toggle" role="button">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @* fetch *@
+    <div>
+        <button class="btn btn-elegant" id="getData">Get list using feth</button>
+        <h5 id="result"></h5>
+    </div>
+    <script>
+        document.getElementById('getData').addEventListener('click', getData);
+
+        function getData() {
+            fetch('/Cities/AllCitiesJson')
+                .then((res) => { return res.json() })
+                .then((data) => {
+                    let result = `Cities that are already on the list: `;
+                    data.forEach((cities) => {
+                        const { name } = cities
+                        result +=
+                            //`<div>
+                            // <h5> City ID: ${id} </h5>
+                            //     <ul class="w3-ul">
+                            //         <li> Name : ${name}</li>
+                            //     </ul>
+                            //  </div>`;
+                            `<em> ${name} /</em>`;
+                        document.getElementById('result').innerHTML = result;
+                    });
+                }).catch(function (error) {
+                    console.log('There has been a problem with your fetch operation: ' + error.message);
+                });
+        }    
+    </script>
+
+</div>

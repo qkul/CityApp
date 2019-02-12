@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CitiesApp.Models;
+using CitiesApp.Infrastructure;
+using CitiesApp.Repositories;
 
 namespace CitiesApp
 {
@@ -21,7 +23,7 @@ namespace CitiesApp
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }    
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,6 +35,9 @@ namespace CitiesApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<IRepositoryBase<City>, CityRepository>();//*** controller <-> services <-> repository
+            services.AddTransient<IRepositoryBase<Photo>, PhotoRepository>();
+            //services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -49,7 +54,7 @@ namespace CitiesApp
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Shared/Error");
                 app.UseHsts();
             }
 
@@ -61,7 +66,7 @@ namespace CitiesApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Cities}/{action=Index}/{id?}");
             });
         }
     }

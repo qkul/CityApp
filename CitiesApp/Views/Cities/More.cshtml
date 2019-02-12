@@ -4,37 +4,61 @@
 @{
     ViewData["Title"] = "More";
 }
-<div>
-    <h1 class="text-center">@Model.Name</h1>
-    <h4><b>Description: </b></h4>
-    @if (Model.Description == null)
+<div class="container text-white text-center">
+    <div>
+        <h1>@Model.Name</h1>
+        @if (Model.Description == null)
+        {
+            <h5><b>Description: </b> <em>---</em></h5>
+        }
+        else
+        {
+            <h5><b>Description: </b><em>@Model.Description</em></h5>
+        }
+    </div>
+    @if (Model.Photos.Count == 0)
     {
-        <h5><em>---</em></h5>
+        <div>
+            <h3>Places not yet added</h3>
+        </div>
     }
     else
     {
-        <h5><em>@Model.Description</em></h5>
+        <!-- First row -->
+        <div class="row">
+            <!-- First column -->
+            <div class="col-md-12">
+                <div id="mdb-lightbox-ui"></div>
+                <div class="mdb-lightbox">
+                    @foreach (var p in Model.Photos)
+                    {
+                        <figure class="col-md-4">
+                            <a href="@Url.Action("GetPhoto", "Photos", new { id = p.Id })" alt="@p.Id" data-size="1600x1067">
+                                <img src="@Url.Action("GetPhoto", "Photos", new { id = p.Id })" alt="@p.Id" class="img-fluid z-depth-2">
+                            </a>
+                            <figcaption>
+                                <form asp-action="DeletePhoto" asp-controller="Photos" asp-route-id="@p.Id">
+                                    <input type="hidden" asp-for="@p.Id" />
+                                    <input type="submit" value="Delete" class="btn btn-elegant" />
+                                    <a asp-action="EditPhoto" asp-controller="Photos" asp-route-id="@p.Id" class="btn btn-elegant">Edit</a>
+                                </form>
+                                <div>
+                                   <h5>@p.PhotoInfo</h5> 
+                                </div>
+                            </figcaption>
+                        </figure>
+                        
+                    }
+                </div>
+            </div>
+            <!-- First column -->
+        </div>
+        <!-- First row -->
+       
     }
+    <div>
+        <a href="@Url.Action("AddPhoto", "Photos", new { id = Model.Id })" class="btn btn-elegant"><i class="far fa-image"> Add new photo</i></a>
+        <a asp-action="Index" class="btn btn-elegant"> <i class="far fa-list-alt"> Back to list</i> </a>
+    </div>
 </div>
 
-@if (Model.Photos.Count == 0)
-{
-    <div>
-        <h3>Фотографий нет</h3>
-    </div>
-}
-else
-{
-    @foreach (var p in Model.Photos)
-    {
-        <img src="@Url.Action("GetPhoto", new { id = p.Id })" alt="@p.Id" />
-        <form asp-action="DeletePhoto" asp-route-id="@p.Id">
-            <input type="hidden" asp-for="@p.Id" />
-            <input type="submit" value="Delete" class="btn btn-primary" />
-        </form>
-    }
-}
-<div>
-    <a href="@Url.Action("AddPhoto", new { id = Model.Id })" class="btn btn-primary btn-xs dropdown-toggle" role="button">Добавить новую фотографию</a>
-    <a asp-action="Index" class="btn btn-primary btn-xs dropdown-toggle" role="button">Back to List</a>
-</div>

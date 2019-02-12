@@ -1,0 +1,12 @@
+﻿@model IEnumerable<CitiesApp.Models.City>
+
+<div >
+    <h5>
+        Cities that are already on the list:
+        @foreach (var item in Model)
+        {
+           <em> @Html.DisplayFor(modelItem => item.Name)  / </em>
+        }
+    </h5>
+</div>
+

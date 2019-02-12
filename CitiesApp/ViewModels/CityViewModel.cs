@@ -9,6 +9,7 @@ namespace CitiesApp.ViewModels
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public Photo PhotoInfo { get; set; }
         public ICollection<Photo> Photos { get; set; }
     }
 }

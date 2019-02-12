@@ -7,7 +7,8 @@ namespace CitiesApp.Models
 {
     public class Photo
     {
-        public int Id { get; set; }
+        public int Id { get; set; }     
+        public string PhotoInfo { get; set; }
         public byte[] Image { get; set; }
         public string ImageType { get; set; }
         public int CityId { get; set; }

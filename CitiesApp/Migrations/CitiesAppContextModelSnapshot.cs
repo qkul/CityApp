@@ -25,11 +25,15 @@ namespace CitiesApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Country");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<double>("Rating");
 
@@ -51,6 +55,8 @@ namespace CitiesApp.Migrations
                     b.Property<byte[]>("Image");
 
                     b.Property<string>("ImageType");
+
+                    b.Property<string>("PhotoInfo");
 
                     b.HasKey("Id");
 
