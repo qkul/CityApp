@@ -10,22 +10,23 @@ namespace CitiesApp.Controllers
 {
     public class PhotosController : Controller
     {
-        private readonly IPhotoRepository _photoRepositoty;
-        public PhotosController(IPhotoRepository photoRepository)
+        private readonly IRepositoryBase<Photo> _photoRepositoty;
+        public PhotosController(IRepositoryBase<Photo> photoRepository)
         {
-            _photoRepositoty = photoRepository;//_photoRepositoty
+            _photoRepositoty = photoRepository;
         }
 
-        // GET: /Cities/GetPhoto
+        // GET: Photos/GetPhoto
         public async Task <IActionResult> GetPhoto(int? id)
         {
+            if (id == null) return NotFound();
             var photo = await _photoRepositoty.FirtsOrDefaoultAsync(p => p.Id == id);
             if (photo == null) return NotFound();
 
             return File(photo.Image, photo.ImageType);
         }
 
-        // GET: /Cities/AddPhoto
+        // GET: Photos/AddPhoto
         public IActionResult AddPhoto(int? id)
         {
             if (id == null)
@@ -35,7 +36,7 @@ namespace CitiesApp.Controllers
             return View(new PhotoViewModel { CityId = id.Value });
         }
 
-        // POST: /Cities/AddPhoto
+        // POST: Photos/AddPhoto
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddPhoto(PhotoViewModel model)
@@ -62,7 +63,31 @@ namespace CitiesApp.Controllers
             return RedirectToAction("More","Cities", new { id = model.CityId });
         }
 
-        // GET: /Cities/DeletePhoto
+
+        //GET: Photos/EditPhoto
+        public async Task<IActionResult> EditPhoto(int? id)
+        {
+            if (id == null) return NotFound();
+            var photo = await _photoRepositoty.GetAsync(id);
+            if (photo == null) return NotFound();
+            return View(photo);
+        }
+
+        //POST: Photos/EditPhoto
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPhoto (int id,[Bind("Id,PhotoInfo,Image,ImageType,CityId")]Photo photo)
+        {
+            var photoNew = await _photoRepositoty.GetAsync(id);
+            photoNew.PhotoInfo = photo.PhotoInfo;
+            if (!ModelState.IsValid) return View(photo);
+            await _photoRepositoty.UpdateAsync(photoNew);
+       
+            return RedirectToAction("More", "Cities", new { id = photoNew.CityId });
+        }
+
+
+        // GET: Photos/DeletePhoto
         public async Task <IActionResult> DeletePhoto(int? id)
         {
             if (id == null) return NotFound();
@@ -72,20 +97,16 @@ namespace CitiesApp.Controllers
             return View(photo);
         }
 
-        // POST: Cities/DeletePhoto
+        // POST: Photos/DeletePhoto
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeletePhoto(int id)
         {
-            //var photo = await _photoRepositoty.GetPhotoFindIdAsync(id);
-            //await _photoRepositoty.DeletePhotoAsync(photo);
-
             /* 
             var photo1 = _context.Photos.Remove( new Photo { Id = id} );
             await _context.SaveChangesAsync();
             return RedirectToAction("More", "Cities");
             */// The transation to the main page does not work
-
             var photo = await _photoRepositoty.GetAsync(id);
             await _photoRepositoty.DeleteAsyn(photo);
             return RedirectToAction("More", "Cities", new { id = photo.CityId });

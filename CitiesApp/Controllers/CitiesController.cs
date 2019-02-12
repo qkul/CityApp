@@ -12,12 +12,9 @@ namespace CitiesApp.Controllers
     public class CitiesController : Controller
     {
 
-        //fix 1 interface
-        //fix 2 Controller(city/photo)
-
-        private readonly ICityRepository _cityRepository;
-        private readonly IPhotoRepository _photoRepositoty;
-        public CitiesController(ICityRepository cityRepository, IPhotoRepository photoRepository)
+        private readonly IRepositoryBase<City> _cityRepository;
+        private readonly IRepositoryBase<Photo> _photoRepositoty;
+        public CitiesController(IRepositoryBase<City> cityRepository, IRepositoryBase<Photo> photoRepository)
         {
             _cityRepository = cityRepository;//_cityRepository
             _photoRepositoty = photoRepository;//_photoRepositoty
@@ -109,7 +106,7 @@ namespace CitiesApp.Controllers
 
             try
             {
-                await _cityRepository.UpdateCity(city);
+                await _cityRepository.UpdateAsync(city);
             }
             catch (DbUpdateConcurrencyException)
             {         
@@ -138,8 +135,9 @@ namespace CitiesApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> More(int id)
+        public async Task<IActionResult> More(int? id)
         {
+            if (id == null) return NotFound();
             var city = await _cityRepository.FirtsOrDefaoultAsync(c => c.Id == id);
             if (city == null)
             {

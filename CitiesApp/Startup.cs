@@ -35,8 +35,9 @@ namespace CitiesApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddTransient<ICityRepository, CityRepository>();//*** controller <-> services <-> repository
-            services.AddTransient<IPhotoRepository, PhotoRepository>();
+            services.AddTransient<IRepositoryBase<City>, CityRepository>();//*** controller <-> services <-> repository
+            services.AddTransient<IRepositoryBase<Photo>, PhotoRepository>();
+            //services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

@@ -21,6 +21,7 @@ namespace CitiesApp.Infrastructure
         void Save();
         void Update(T entity);
         Task<int> SaveAsync();
+        Task<int> UpdateAsync(T entity);
         IQueryable<T> GetAllSelect(Expression<Func<T, T>> predicate);
     }
 }

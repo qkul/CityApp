@@ -11,12 +11,12 @@ namespace CitiesApp.Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
+
         protected readonly CitiesAppContext _context;
-        public RepositoryBase(CitiesAppContext context)
+        public RepositoryBase(CitiesAppContext context) 
         {
             _context = context;
         }
-
         public List<T> GetAll()
         {
             return _context.Set<T>().ToList();
@@ -89,6 +89,12 @@ namespace CitiesApp.Repositories
         public async Task<T> FirtsOrDefaoultAsync(Expression<Func<T, bool>> predicate)
         {
             return await _context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
+        public  async Task<int> UpdateAsync(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            return await _context.SaveChangesAsync();
         }
     }
 }

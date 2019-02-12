@@ -8,14 +8,8 @@ using System.Threading.Tasks;
 
 namespace CitiesApp.Repositories
 {
-    public class CityRepository : RepositoryBase<City>, ICityRepository
+    public class CityRepository : RepositoryBase<City>
     {
-        public CityRepository(CitiesAppContext context) : base(context) { }
-
-        public async Task UpdateCity(City city)
-        {
-            Update(city);
-            await SaveAsync();
-        }
+        public CityRepository(CitiesAppContext context) : base(context) {}
     }
 }

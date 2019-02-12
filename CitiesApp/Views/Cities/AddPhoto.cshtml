@@ -1,0 +1,38 @@
+﻿@using CitiesApp.ViewModels
+@model PhotoViewModel
+@{
+    ViewData["Title"] = "AddPhoto";
+}
+<div class="container">
+    <div class="container text-white">
+        <h2>Add a photo</h2>
+        <h4>Photo</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                @using (Html.BeginForm("AddPhoto", "Cities", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.HiddenFor(m => m.CityId)
+                        @Html.LabelFor(m => m.Image)
+                        @Html.TextBoxFor(m => m.Image, new { type = "file" })
+                    </div>
+                    <div class="form-group shadow-textarea">
+                        <label for="exampleFormControlTextarea6">Place name and description</label>
+                        <textarea asp-for="PhotoInfo" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write description here..."></textarea>
+                        <span asp-validation-for="PhotoInfo" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-elegant" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div>
+           <a asp-action="Index" class="btn btn-elegant"> <i class="far fa-list-alt"> Back to list</i> </a>
+        </div>
+    </div>
+</div>

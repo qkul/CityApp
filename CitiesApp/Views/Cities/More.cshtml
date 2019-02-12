@@ -39,7 +39,8 @@
                             <figcaption>
                                 <form asp-action="DeletePhoto" asp-controller="Photos" asp-route-id="@p.Id">
                                     <input type="hidden" asp-for="@p.Id" />
-                                    <input type="submit" value="Delete" onclick="location.href='@Url.Action("More", "Cities", new { id = p.CityId})'" class="btn btn-elegant" />
+                                    <input type="submit" value="Delete" class="btn btn-elegant" />
+                                    <a asp-action="EditPhoto" asp-controller="Photos" asp-route-id="@p.Id" class="btn btn-elegant">Edit</a>
                                 </form>
                                 <div>
                                    <h5>@p.PhotoInfo</h5> 

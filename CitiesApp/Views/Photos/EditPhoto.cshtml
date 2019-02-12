@@ -1,0 +1,29 @@
+﻿@model CitiesApp.Models.Photo
+
+@{
+    ViewData["Title"] = "EdiеPhoto";
+}
+
+
+<div class="container text-white">
+    <h2>Edit</h2>
+    <h4>Place</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditPhoto">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group shadow-textarea">
+                    <label for="exampleFormControlTextarea6">Place info</label>
+                    <textarea asp-for="PhotoInfo" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write description here..."></textarea>
+                    <span asp-validation-for="PhotoInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-elegant" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>    
